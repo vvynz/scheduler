@@ -58,6 +58,7 @@ export default function Application(props) {
     })
   }, [day])
 
+
   return (
     <main className="layout">
       <section className="sidebar">
