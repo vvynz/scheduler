@@ -1,4 +1,4 @@
-export function getAppointmentsForDay(state, day) {
+export default function getAppointmentsForDay(state, day) {
   //Returns an array of obj from state.days where the name matches the provided day
   let apptArr = [];
 
@@ -23,7 +23,7 @@ export function getAppointmentsForDay(state, day) {
       })
     }
   });
-  console.log("FINAL", apptArr);
+  // console.log("FINAL", apptArr);
   return apptArr;
 
 }
