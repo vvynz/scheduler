@@ -45,18 +45,26 @@ const appointments = [
 ];
 
 export default function Application(props) {
-  const [day, setDay] = useState("Monday");
-  const [days, setDays] = useState([]);
+  const setDay = day => setState({ ...state, day });
+  const setDays = days => setState({ ...state, days });
 
-  // console.log("APPTS????", appointments);
-  const apptArr = appointments.map(appointment => <Appointment key={appointment.id} {...appointment} />)
+  const [state, setState] = useState({
+    day: "Monday",
+    days: [],
+    appointments: {}
+  })
+  // const [day, setDay] = useState("Monday");
+  // const [days, setDays] = useState([]);
+
+
+  const appointmentsArr = appointments.map(appointment => <Appointment key={appointment.id} {...appointment} />)
 
   useEffect(() => {
     axios.get('/api/days').then(response => {
       console.log(response.data);
       setDays([...response.data]);
     })
-  }, [day])
+  }, [])
 
 
   return (
@@ -69,7 +77,7 @@ export default function Application(props) {
         />
         <hr className="sidebar__separator sidebar--centered" />
         <nav className="sidebar__menu">
-          <DayList days={days} value={day} onChange={setDays} />
+          <DayList days={state.days} day={state.day} setDay={setDay} setDays={setDays} />
         </nav>
         <img
           className="sidebar__lhl sidebar--centered"
@@ -78,7 +86,7 @@ export default function Application(props) {
         />
       </section>
       <section className="schedule">
-        {apptArr}
+        {appointmentsArr}
         <Appointment key="last" time="5pm" />
       </section>
     </main>
