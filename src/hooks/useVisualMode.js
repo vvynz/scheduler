@@ -7,7 +7,7 @@ export default function useVisualMode(initial) {
   // initializes the history array with the first mode that gets passed in
 
   // takes in a new mode and updates the mode state with the new value 
-  function transition(mode) {
+  function transition(mode, replace = false) {
     return setMode(mode);
   }
 
