@@ -98,5 +98,3 @@ export function getInterview(state, interview) {
   return result;
 }
 
-// getInterview(state, state.appointments["2"].interview);
-// export default { getAppointmentsForDay }
