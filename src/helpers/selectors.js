@@ -78,10 +78,10 @@ export function getInterview(state, interview) {
   let result = {};
 
   //retrieve an array of the interviewers obj from the state obj
-  const interviewersArr = Object.values(state.interviewers);
-  // console.log("ARRAY", interviewersArr);
+  const output = Object.values(state.interviewers);
+  // console.log("ARRAY", output);
 
-  interviewersArr.map(interviewer => {
+  output.map(interviewer => {
     // console.log(interviewer);
 
     if (interview === null) {
@@ -98,3 +98,21 @@ export function getInterview(state, interview) {
   return result;
 }
 
+export function getInterviewersForDay(state, day) {
+  let output = [];
+  let interviewersForDay;
+
+  state.days.filter(date => {
+    if (date.name === day) {
+      interviewersForDay = date.interviewers;
+    }
+  });
+
+  if (!interviewersForDay) {
+    return output;
+  }
+
+
+
+  return output;
+}
