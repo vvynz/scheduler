@@ -115,17 +115,9 @@ export function getInterviewersForDay(state, day) {
   }
 
   for (const id of interviewersForDay) {
-    console.log("ID", state.interviewers[id]);
     let interviewer = state.interviewers[id];
     output.push(interviewer);
-    // if (interviewersForDay === state.interviewers[id]) {
-    //   let interviewer = state.interviewers;
-    //   console.log("ID", interviewer);
-    //   output.push(interviewer);
-    // }
   }
-
-
 
   return output;
 }
