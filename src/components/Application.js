@@ -8,7 +8,6 @@ import { getAppointmentsForDay, getInterview } from 'helpers/selectors';
 
 export default function Application(props) {
   const setDay = day => setState({ ...state, day });
-  // const setDays = days => setState(prev => ({ ...prev, days }));
 
   const [state, setState] = useState({
     day: "Monday",
@@ -16,8 +15,6 @@ export default function Application(props) {
     appointments: {},
     interviewers: {}
   })
-  // const [day, setDay] = useState("Monday");
-  // const [days, setDays] = useState([]);
 
 
   // our array of appointments returned from our helper function
@@ -39,7 +36,7 @@ export default function Application(props) {
       axios.get('/api/appointments'),
       axios.get('/api/interviewers')
     ]).then((all) => {
-      console.log("MEOW", all[2].data);
+
       setState(prev => ({
         ...prev,
         days: all[0].data,
