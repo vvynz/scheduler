@@ -7,19 +7,28 @@ export default function useVisualMode(initial) {
   // initializes the history array with the first mode that gets passed in
 
   // takes in a new mode and updates the mode state with the new value 
-  function transition(mode, replace = false) {
-    return setMode(mode);
+  function transition(newMode, replace = false) {
+    // since replace is already set to a boolean value, we can just do a !replace instead of replace === true
+    // if true, replace with the current/ new mode
+    if (!replace) {
+      setHistory(prev => [...prev, newMode]); //new mode is added to the history array
+    }
+    setMode(newMode);
+
   }
 
   // transition BACK to a previous mode
   function back() {
+
     // user can't go back past the initial value
-    if (history.length >= 1) {
+    if (history.length === 1) {
       setMode(initial);
     } else {
-
       setMode(history[history.length - 2]); //sets the mode to the PREVIOUS mode in the history array
-      setHistory(history.slice(0, -1)); //removes the last item in the history array
+
+      // setHistory(history.slice(0, -1)); //removes the last item in the history array
+      setHistory(prev => prev.slice((prev.length - 2), -1));
+
     }
   };
 
