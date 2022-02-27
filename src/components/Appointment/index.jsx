@@ -3,21 +3,31 @@ import "components/Appointment/styles.scss";
 import Header from "components/Appointment/Header";
 import Show from "components/Appointment/Show";
 import Empty from "components/Appointment/Empty";
+import useVisualMode from "hooks/useVisualMode";
+import { create } from "react-test-renderer";
 
 export default function Appointment(props) {
+  const EMPTY = "EMPTY";
+  const SHOW = "SHOW";
+  const CREATE = "CREATE";
+  const { mode, transition, back } = useVisualMode(
+    props.interview ? SHOW : EMPTY
+  );
+
   return (
     <article className="appointment">
       <Header time={props.time} />
-      {props.interview ? (
+      {mode === EMPTY && <Empty onAdd={() => transition(create)} />}
+      {mode === SHOW && (
         <Show
           // id={props.id}
           student={props.interview.student}
           interviewer={props.interview.interviewer}
         />
-      ) : (
-        <Empty />
       )}
-      {/* {props.interview && (
+
+      {/* /*
+      {props.interview && (
         <Show
           interview={{
             student: props.interview.student,
@@ -25,7 +35,7 @@ export default function Appointment(props) {
           }}
         />
       )}
-      {!props.interview && <Empty />} */}
+      {!props.interview && <Empty />}  */}
     </article>
   );
 }
