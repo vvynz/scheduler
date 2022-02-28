@@ -30,12 +30,24 @@ export default function Application(props) {
       [id]: appointment
     };
 
-    axios.put(`/api/appointments/${id}`, appointment)
-      .then(res => {
+    // make PUT request to appintments/:id
+    return axios.put(`/api/appointments/${id}`, appointment)
+      .then(() => {
         // console.log(res);
+        // update the existing setState with the response
         setState({ ...state, appointments });
       })
       .catch(err => console.log(err))
+  }
+
+  const cancelInterview = (id) => {
+    console.log("ID", id);
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment,
+      interview: null
+    };
   }
 
   // our array of appointments returned from our helper function
@@ -45,7 +57,7 @@ export default function Application(props) {
     const interviewers = getInterviewersForDay(state, state.day);
 
     return (
-      <Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} interviewers={interviewers} bookInterview={bookInterview} />
+      <Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} interviewers={interviewers} bookInterview={bookInterview} onDelete={cancelInterview} />
     )
   })
 
