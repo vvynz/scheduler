@@ -26,11 +26,10 @@ export default function Form(props) {
             type="text"
             placeholder="Enter Student Name"
             onChange={(event) => setStudent(event.target.value)}
-            onSave={(event) => props.onSave(props.name, interviewer)}
           />
         </form>
         <InterviewerList
-          interviewer={interviewer}
+          interviewerId={interviewer}
           interviewers={props.interviewers}
           selected={props.selected}
           setInterviewer={setInterviewer}

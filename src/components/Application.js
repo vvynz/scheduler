@@ -17,7 +17,20 @@ export default function Application(props) {
   })
 
   const bookInterview = (id, interview) => {
-    console.log(id, interview);
+    // alert("HELLO");
+    // console.log(id, interview);
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: { ...interview }
+    };
+
+    const appointments = {
+      ...state.appointments,
+      [id]: appointment
+    };
+
+    setState({ ...state, appointments });
   }
 
   // our array of appointments returned from our helper function
@@ -27,7 +40,7 @@ export default function Application(props) {
     const interviewers = getInterviewersForDay(state, state.day);
 
     return (
-      <Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} interviewers={interviewers} bookInterview={bookInterview(appointment.id, interview)} />
+      <Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} interviewers={interviewers} bookInterview={bookInterview} />
     )
   })
 
