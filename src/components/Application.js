@@ -16,6 +16,9 @@ export default function Application(props) {
     interviewers: {}
   })
 
+  const bookInterview = (id, interview) {
+    console.log(id, interview);
+  }
 
   // our array of appointments returned from our helper function
   const dailyAppointments = getAppointmentsForDay(state, state.day);
@@ -24,7 +27,7 @@ export default function Application(props) {
     const interviewers = getInterviewersForDay(state, state.day);
 
     return (
-      <Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} interviewers={interviewers} />
+      <Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} interviewers={interviewers} bookInterview={bookInterview} />
     )
   })
 
