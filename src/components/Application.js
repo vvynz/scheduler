@@ -30,7 +30,12 @@ export default function Application(props) {
       [id]: appointment
     };
 
-    setState({ ...state, appointments });
+    axios.put(`/api/appointments/${id}`, appointment)
+      .then(res => {
+        // console.log(res);
+        setState({ ...state, appointments });
+      })
+      .catch(err => console.log(err))
   }
 
   // our array of appointments returned from our helper function
