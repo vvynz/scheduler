@@ -11,11 +11,20 @@ export default function useApplicationData(initial) {
 
   // function that sets the current day
   const setDay = day => setState({ ...state, day });
-  const updateSpots = (state, day) => {
-    const dayObj = state.days.find(date => date.name === day);
-    const apptsForDay = dayObj.appointments;
 
+  // a function that finds the number of interview spots remaining for a selected day
+  const updateSpots = (state, day) => {
+    // finds the selected day's object
+    const selectedDay = state.days.find(date => date.name === day);
+    const apptsForDay = selectedDay.appointments;
+
+    // filter through the selectDay's appointments to find the null interview objects
+    const spotsRemaining = apptsForDay.filter(appt =>
+      state.appointments[appt].interview === null).length;
+
+    return spotsRemaining;
   }
+
   // makes a PUT request to make a new appointment
   const bookInterview = (id, interview) => {
     // alert("HELLO");
@@ -31,6 +40,8 @@ export default function useApplicationData(initial) {
       [id]: appointment
     };
 
+    const spotsRemaining = updateSpots(state, state.day);
+    console.log("SPOTS REMAINING??", spotsRemaining);
     // make PUT request to appintments/:id
     return axios.put(`/api/appointments/${id}`, appointment)
       .then(() => {
