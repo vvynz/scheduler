@@ -8,7 +8,6 @@ export default function useVisualMode(initial) {
 
   // takes in a new mode and updates the mode state with the new value 
   function transition(newMode, replace = false) {
-    // since replace is already set to a boolean value, we can just do a !replace instead of replace === true
     // if true, replace with the current/ new mode
     if (!replace) {
       setHistory(prev => [...prev, newMode]); //new mode is added to the history array
