@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Show(props) {
+  console.log("PROPS", props);
   return (
     <main className="appointment__card appointment__card--show">
       <section className="appointment__card-left">
@@ -8,6 +9,7 @@ export default function Show(props) {
         <section className="interviewer">
           <h4 className="text--light">Interviewer</h4>
           <h3 className="text--regular">{props.interviewer.name}</h3>
+          {/* {props.interviewer ? props.interviewer.name : null} */}
         </section>
       </section>
       <section className="appointment__card-right">
