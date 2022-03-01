@@ -44,30 +44,19 @@ const state = {
 
 export function getAppointmentsForDay(state, day) {
   //Returns an array of obj from state.days where the name matches the provided day
+
+  const dayObj = state.days.find(date => date.name === day);
+  if (!dayObj) {
+    return [];
+  }
+
   let apptArr = [];
 
-  const filteredDays = state.days.filter(date => {
-    if (date.name === day) {
-      // return date;
+  for (const id of dayObj.appointments) {
+    const appointment = state.appointments[id];
+    apptArr.push(appointment);
+  }
 
-      const stateArr = Object.values(state.appointments);
-      // console.log("OBJ???", stateArr);
-      const apptObj = stateArr.map(appt => {
-        // console.log("MEOW", appt.id);
-        // console.log("APPTS??", date.appointments);
-
-        for (const result of date.appointments) {
-          // console.log(result);
-
-          if (appt.id === result) {
-            apptArr.push(appt);
-
-          }
-        }
-      })
-    }
-  });
-  // console.log("FINAL", apptArr);
   return apptArr;
 
 }
@@ -77,48 +66,31 @@ export function getAppointmentsForDay(state, day) {
 export function getInterview(state, interview) {
   // console.log("INTERVIEW OBJ", state.appointments["3"].interview);
 
-  let result = {};
+  if (!interview) {
+    return null;
+  }
 
-  //retrieve an array of the interviewers obj from the state obj
-  const output = Object.values(state.interviewers);
-  // console.log("ARRAY", output);
+  const interviewer = state.interviewers[interview.interviewer];
+  const newInterview = { ...interview, interviewer };
 
-  output.map(interviewer => {
-    // console.log(interviewer);
+  return newInterview;
 
-    if (interview === null) {
-      result = null;
-    } else if (interviewer.id === interview.interviewer) {
-      result = {
-        student: interview.student,
-        interviewer
-      };
-    }
-  })
-  // should return a new obj that contains the interview data else, returns null
-  // console.log("RESULT", result);
-  return result;
 }
 
 export function getInterviewersForDay(state, day) {
-  let output = [];
-  let interviewersForDay;
-
-  state.days.filter(date => {
-    if (date.name === day) {
-      interviewersForDay = date.interviewers;
-    }
-  });
-
-  if (!interviewersForDay) {
-    return output;
+  const dayObj = state.days.find(date => date.name === day);
+  if (!dayObj) {
+    return [];
   }
 
-  for (const id of interviewersForDay) {
-    let interviewer = state.interviewers[id];
-    output.push(interviewer);
+  let results = [];
+
+  for (const id of dayObj.interviewers) {
+    const interview = state.interviewers[id];
+    results.push(interview);
   }
 
-  return output;
+  return results;
+
 }
 
