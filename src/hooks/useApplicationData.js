@@ -11,7 +11,11 @@ export default function useApplicationData(initial) {
 
   // function that sets the current day
   const setDay = day => setState({ ...state, day });
+  const updateSpots = (state, day) => {
+    const dayObj = state.days.find(date => date.name === day);
+    const apptsForDay = dayObj.appointments;
 
+  }
   // makes a PUT request to make a new appointment
   const bookInterview = (id, interview) => {
     // alert("HELLO");
