@@ -60,16 +60,6 @@ export default function Appointment(props) {
       {mode === SAVING && <Status message={SAVING} />}
       {mode === DELETING && <Status message={DELETING} />}
 
-      {/* /*
-      {props.interview && (
-        <Show
-          interview={{
-            student: props.interview.student,
-            interviewer: props.interview.interviewer.name,
-          }}
-        />
-      )}
-      {!props.interview && <Empty />}  */}
     </article>
   );
 }
