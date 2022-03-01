@@ -41,13 +41,25 @@ export default function Application(props) {
   }
 
   const cancelInterview = (id) => {
-    console.log("ID", id);
+    // alert(id);
+
+    const appointment = {
+      ...state.appointments[id],
+      interview: null
+    };
 
     const appointments = {
       ...state.appointments,
       [id]: appointment,
       interview: null
     };
+
+    return axios.delete(`/api/appointments/${id}`)
+      .then(() => {
+        // console.log("RES??", res);
+        setState({ ...state, appointments });
+      })
+
   }
 
   // our array of appointments returned from our helper function
@@ -57,7 +69,7 @@ export default function Application(props) {
     const interviewers = getInterviewersForDay(state, state.day);
 
     return (
-      <Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} interviewers={interviewers} bookInterview={bookInterview} onDelete={cancelInterview} />
+      <Appointment key={appointment.id} id={appointment.id} time={appointment.time} interview={interview} interviewers={interviewers} bookInterview={bookInterview} cancelInterview={cancelInterview} />
     )
   })
 
