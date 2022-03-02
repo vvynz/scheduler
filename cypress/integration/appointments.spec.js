@@ -5,7 +5,8 @@ describe("Appoinments", () => {
     cy.visit("/");
 
     cy.contains("Monday");
-  })
+  });
+
   it("should book an interview", () => {
     cy.get("[alt=Add]")
       .first()
@@ -22,6 +23,10 @@ describe("Appoinments", () => {
 
     cy.contains(".appointment__card--show", "Lydia Miller-Jones");
     cy.contains(".appointment__card--show", "Sylvia Palmer");
+
+  });
+
+  it("should edit an interview", () => {
 
   });
 });
