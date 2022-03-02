@@ -46,10 +46,13 @@ export default function useApplicationData(initial) {
     console.log("APPOINTMENTS", appointments);
     const spotsLeft = updateSpots(state, appointments, state.day);
     console.log("Spots left:", spotsLeft);
+
+    // map through the state days object to find the selected day and update that day's spots remaining
     const days = state.days.map(day => {
       if (day.name === state.day) {
         return { ...day, spots: spotsLeft }
       }
+      // if not the selected day, just return the day(don't want to modify it)
       return day;
     })
 
@@ -78,13 +81,19 @@ export default function useApplicationData(initial) {
       [id]: appointment,
     };
 
-    const spotsLeft = updateSpots(state, state.day);
+    const spotsLeft = updateSpots(state, appointments, state.day);
+    const days = state.days.map(day => {
+      if (day.name === state.day) {
+        return { ...day, spots: spotsLeft }
+      }
+      return day;
+    })
     console.log("SPOTS AFTER CANCEL", spotsLeft);
 
     return axios.delete(`/api/appointments/${id}`)
       .then(() => {
         // console.log("RES??", res);
-        setState({ ...state, appointments });
+        setState({ ...state, appointments, days: days });
       })
   }
 
