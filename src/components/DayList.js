@@ -7,7 +7,7 @@ export default function DayList(props) {
 
   // check to see if the day that is selected matches the name of the day in the object we are currently processing. 
   // the object here in .map, would be "day"
-  const days = props.days.map(day => <DayListItem key={day.id} selected={props.value === day.name} setDay={props.setDay} {...day} />);
+  const days = props.days.map(day => <DayListItem key={day.id} selected={day.name === props.day} setDay={props.setDay} {...day} />);
 
   return (
     <ul>{days}</ul>
