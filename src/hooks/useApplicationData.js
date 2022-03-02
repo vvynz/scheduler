@@ -28,8 +28,6 @@ export default function useApplicationData(initial) {
   // makes a PUT request to make a new appointment
   const bookInterview = (id, interview) => {
     // alert("HELLO");
-    console.log("INTERVIEW OBJ", interview);
-    // console.log("ID", id);
 
     // new appointment object
     const appointment = {
@@ -43,9 +41,7 @@ export default function useApplicationData(initial) {
       [id]: appointment
     };
 
-    console.log("APPOINTMENTS", appointments);
     const spotsLeft = updateSpots(state, appointments, state.day);
-    console.log("Spots left:", spotsLeft);
 
     // map through the state days object to find the selected day and update that day's spots remaining
     const days = state.days.map(day => {
@@ -62,7 +58,6 @@ export default function useApplicationData(initial) {
         // console.log(res);
         // update the existing setState with the response
         setState({ ...state, appointments, days: days });
-        console.log("SPOTS AFTER STATE", state);
       })
       .catch(err => console.log(err))
   }
@@ -88,7 +83,6 @@ export default function useApplicationData(initial) {
       }
       return day;
     })
-    console.log("SPOTS AFTER CANCEL", spotsLeft);
 
     return axios.delete(`/api/appointments/${id}`)
       .then(() => {
