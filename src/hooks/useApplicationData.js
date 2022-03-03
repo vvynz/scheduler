@@ -55,7 +55,6 @@ export default function useApplicationData(initial) {
     // make PUT request to appintments/:id
     return axios.put(`/api/appointments/${id}`, appointment)
       .then(() => {
-        // console.log(res);
         // update the existing setState with the response
         setState({ ...state, appointments, days: days });
       })
@@ -64,7 +63,6 @@ export default function useApplicationData(initial) {
 
   // makes a DELETE request to cancel an appointment and updates out state object
   const cancelInterview = (id) => {
-    // alert(id);
 
     const appointment = {
       ...state.appointments[id],
@@ -86,7 +84,6 @@ export default function useApplicationData(initial) {
 
     return axios.delete(`/api/appointments/${id}`)
       .then(() => {
-        // console.log("RES??", res);
         setState({ ...state, appointments, days: days });
       })
   }
