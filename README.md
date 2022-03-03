@@ -4,6 +4,10 @@ The Interview Scheduler is a single-page application, created using React. A use
 
 # Previews
 
+!["Screenshot of the main page"](https://github.com/vvynz/scheduler/blob/master/docs/scheduler_main.png)
+!["Screenshot of the saving message"](https://github.com/vvynz/scheduler/blob/master/docs/scheduler_saving.png)
+!["Screenshot of the confirm delete message"](https://github.com/vvynz/scheduler/blob/master/docs/scheduler_confirm.png)
+
 ## Dependencies
 
 - axios
