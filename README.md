@@ -1,5 +1,17 @@
 # Interview Scheduler
 
+The Interview Scheduler is a single-page application, created using React. A user can book an interview with an interviewer of their choice. They can also edit and cancel exisiting appointments.
+
+# Previews
+
+## Dependencies
+
+- axios
+- React
+- @testing-library/react-hooks
+- react-test-renderer
+- classnames
+
 ## Setup
 
 Install dependencies with `npm install`.
