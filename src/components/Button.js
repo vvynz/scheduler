@@ -7,14 +7,6 @@ export default function Button(props) {
       "button--confirm": props.confirm,
       "button--danger": props.danger
    });
-   // let buttonClass = "button";
-   // if (props.confirm) {
-   //    buttonClass += " button--confirm";
-   // }
-
-   // if (props.danger) {
-   //    buttonClass += " button--danger";
-   // }
 
    return (
       <button className={buttonClass} onClick={props.onClick}

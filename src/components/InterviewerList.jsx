@@ -4,7 +4,6 @@ import InterviewerListItem from "components/InterviewerListItem";
 import propTypes from 'prop-types';
 
 export default function InterviewerList(props) {
-  // console.log("LIST", props);
 
   const interviewers = props.interviewers.map((interviewer) => {
     return (
@@ -19,9 +18,10 @@ export default function InterviewerList(props) {
     );
   });
 
-  InterviewerList.propTypes = {
-    interviewers: propTypes.array.isRequired
-  };
+  // test code
+  // InterviewerList.propTypes = {
+  //   interviewers: propTypes.array.isRequired
+  // };
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>
