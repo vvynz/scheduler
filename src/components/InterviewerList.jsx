@@ -19,9 +19,11 @@ export default function InterviewerList(props) {
   });
 
   // test code
-  // InterviewerList.propTypes = {
-  //   interviewers: propTypes.array.isRequired
-  // };
+  InterviewerList.propTypes = {
+    interviewers: propTypes.array.isRequired
+  };
+  // test code
+
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>
