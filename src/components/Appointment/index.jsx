@@ -40,7 +40,7 @@ export default function Appointment(props) {
     transition(DELETING, true);
     props.cancelInterview(props.id)
       .then(() => transition(EMPTY))
-      .catch(error => transition(ERROR_DELETE, true));
+      .catch(() => transition(ERROR_DELETE, true));
   }
 
   return (
@@ -73,9 +73,9 @@ export default function Appointment(props) {
 
       {mode === EDIT && <Form student={props.interview.student} interviewer={props.interview.interviewer.id} interviewers={props.interviewers} onCancel={back} onSave={save} />}
 
-      {mode === ERROR_SAVE && <Error message="Your appointment did not save" onClose={() => back(EMPTY)} />}
+      {mode === ERROR_SAVE && <Error message="Your appointment did not save" onClose={back} />}
 
-      {mode === ERROR_DELETE && <Error message="Unable to delete your appointment" onClose={() => back(SHOW)} />}
+      {mode === ERROR_DELETE && <Error message="Unable to delete your appointment" onClose={back} />}
 
     </article>
   );

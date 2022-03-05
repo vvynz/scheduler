@@ -58,7 +58,6 @@ export default function useApplicationData(initial) {
         // update the existing setState with the response
         setState({ ...state, appointments, days: days });
       })
-      .catch(err => console.log(err))
   }
 
   // makes a DELETE request to cancel an appointment and updates out state object
