@@ -37,3 +37,7 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Running API server
+
+For full functionality, the app and the API server must run simultaneously. To install and setup the database server be sure to follow the README.md from [scheduler-api](https://github.com/lighthouse-labs/scheduler-api).
